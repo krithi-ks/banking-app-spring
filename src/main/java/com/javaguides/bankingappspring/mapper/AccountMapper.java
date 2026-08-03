@@ -9,9 +9,15 @@ public class AccountMapper {
     public static Account mapToAccount(AccountDto accountDto) {
         Account account = new Account(
                 // pass details to constructor
-                accountDto.getId(),
-                accountDto.getAccountHolderName(),
-                accountDto.getBalance()
+//                accountDto.getId(),
+//                accountDto.getAccountHolderName(),
+//                accountDto.getBalance()
+
+
+                // remove get from method for record classes
+                  accountDto.id(),
+                  accountDto.accountHolderName(),
+                  accountDto.balance()
         );
         return account;
     }
