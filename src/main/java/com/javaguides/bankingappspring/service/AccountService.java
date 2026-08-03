@@ -11,4 +11,6 @@ public interface AccountService {
     AccountDto getAccountById(Long id);
 
     AccountDto deposit(Long id, double amount);
+
+    AccountDto withdraw(Long id, double amount);
 }
