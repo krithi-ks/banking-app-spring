@@ -10,6 +10,9 @@ import com.javaguides.bankingappspring.repository.AccountRepository;
 import com.javaguides.bankingappspring.service.AccountService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 
@@ -41,6 +44,7 @@ public class AccountServiceImpl implements AccountService {
         return AccountMapper.mapToAccountDto(account);
     }
 
+    // Deposit PUT API
     @Override
     public AccountDto deposit(Long id, double amount) {
 
@@ -54,6 +58,8 @@ public class AccountServiceImpl implements AccountService {
         return AccountMapper.mapToAccountDto(savedAccount);
     }
 
+
+    // withdraw PUT API
     @Override
     public AccountDto withdraw(Long id, double amount) {
 
@@ -71,4 +77,16 @@ public class AccountServiceImpl implements AccountService {
 
         return AccountMapper.mapToAccountDto(savedAccount);
     }
+
+
+    // get all accounts
+    @Override
+    public List<AccountDto> getAllAccounts() {
+
+        List<Account> accounts = accountRepository.findAll();
+        return accounts.stream().map((account) -> AccountMapper.mapToAccountDto(account))
+                .collect(Collectors.toList());
+    }
+
+
 }

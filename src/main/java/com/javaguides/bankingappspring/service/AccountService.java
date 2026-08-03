@@ -2,6 +2,8 @@ package com.javaguides.bankingappspring.service;
 
 import com.javaguides.bankingappspring.dto.AccountDto;
 
+import java.util.List;
+
 public interface AccountService {
 
     //Account createAccount(Account account);
@@ -13,4 +15,6 @@ public interface AccountService {
     AccountDto deposit(Long id, double amount);
 
     AccountDto withdraw(Long id, double amount);
+
+    List<AccountDto> getAllAccounts();
 }
