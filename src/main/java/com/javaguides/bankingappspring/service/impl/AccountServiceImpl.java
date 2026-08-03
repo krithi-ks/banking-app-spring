@@ -5,6 +5,7 @@ package com.javaguides.bankingappspring.service.impl;
 
 import com.javaguides.bankingappspring.dto.AccountDto;
 import com.javaguides.bankingappspring.entity.Account;
+import com.javaguides.bankingappspring.exception.AccountException;
 import com.javaguides.bankingappspring.mapper.AccountMapper;
 import com.javaguides.bankingappspring.repository.AccountRepository;
 import com.javaguides.bankingappspring.service.AccountService;
@@ -40,7 +41,7 @@ public class AccountServiceImpl implements AccountService {
 
         Account account = accountRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Account does not exists"));
+                .orElseThrow(() -> new AccountException("Account does not exists"));
         return AccountMapper.mapToAccountDto(account);
     }
 
@@ -50,7 +51,7 @@ public class AccountServiceImpl implements AccountService {
 
         Account account = accountRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Account does not exists"));
+                .orElseThrow(() -> new AccountException("Account does not exists"));
 
         double total = account.getBalance() + amount;
         account.setBalance(total);
@@ -65,7 +66,7 @@ public class AccountServiceImpl implements AccountService {
 
         Account account = accountRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Account does not exists"));
+                .orElseThrow(() -> new AccountException("Account does not exists"));
 
         if(account.getBalance() < amount){
             throw new RuntimeException("Insufficient amount");
@@ -95,7 +96,7 @@ public class AccountServiceImpl implements AccountService {
 
         Account account = accountRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Account does not exists"));
+                .orElseThrow(() -> new AccountException("Account does not exists"));
 
         accountRepository.deleteById(id);
 
